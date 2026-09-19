@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="BrowserLB — a modular browser and search project."
+  >
+
+  <title>BrowserLB</title>
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">BrowserLB</a>
+
+    <nav>
+      <a href="#search">Search</a>
+      <a href="#security">Security</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">BROWSERLB</p>
+
+      <h1>Search. Navigate. Stay informed.</h1>
+
+      <p class="hero-description">
+        BrowserLB is a modular browser and search project built
+        for experimentation, learning, and development.
+      </p>
+
+      <form id="search" class="search">
+        <input
+          id="query"
+          name="q"
+          type="search"
+          autocomplete="off"
+          placeholder="Search BrowserLB"
+          aria-label="Search BrowserLB"
+          maxlength="256"
+        >
+
+        <button type="submit">
+          Search
+        </button>
+      </form>
+
+      <div
+        id="status"
+        class="status"
+        role="status"
+        aria-live="polite"
+      ></div>
+    </section>
+
+    <section id="security" class="panel">
+      <h2>Security</h2>
+
+      <p>
+        BrowserLB uses defensive validation before processing
+        requests. Security controls are intended to prevent
+        unsafe destinations, malformed input, and excessive
+        requests.
+      </p>
+
+      <div class="security-grid">
+        <div>
+          <strong>HTTPS</strong>
+          <span>Supported</span>
+        </div>
+
+        <div>
+          <strong>Private targets</strong>
+          <span>Blocked by validation</span>
+        </div>
+
+        <div>
+          <strong>Input validation</strong>
+          <span>Enabled</span>
+        </div>
+
+        <div>
+          <strong>Rate limiting</strong>
+          <span>Supported</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="panel">
+      <h2>Results</h2>
+
+      <div id="resultList">
+        Enter a search above.
+      </div>
+    </section>
+
+    <section id="about" class="panel">
+      <h2>About BrowserLB</h2>
+
+      <p>
+        BrowserLB is an experimental modular browser/search
+        stack designed for learning and extension.
+      </p>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
