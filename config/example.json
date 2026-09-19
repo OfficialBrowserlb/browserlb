@@ -1,0 +1,21 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 3000
+  },
+
+  "limits": {
+    "maxSearchLength": 256,
+    "requestTimeoutMs": 8000,
+    "rateLimitWindowSeconds": 10,
+    "rateLimitRequests": 20
+  },
+
+  "security": {
+    "allowHttp": true,
+    "allowHttps": true,
+    "blockPrivateAddresses": true,
+    "blockLoopback": true,
+    "blockReservedAddresses": true
+  }
+}
