@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BrowserLB version="1.0">
+
+    <Metadata>
+        <Name>BrowserLB</Name>
+        <Description>Multi-language experimental browser stack</Description>
+        <GeneratedFor>browserlb project files</GeneratedFor>
+    </Metadata>
+
+    <ServiceEndpoints>
+        <Service id="go-core" role="http-https-and-websocket-search">
+            <Host>localhost</Host>
+            <Port>8080</Port>
+            <HttpPath>/search</HttpPath>
+            <WebSocketPath>/ws</WebSocketPath>
+        </Service>
+
+        <Service id="python-backend" role="rendering-and-cybersecurity-api">
+            <Host>localhost</Host>
+            <Port>5000</Port>
+            <HttpPath>/api/search</HttpPath>
+        </Service>
+
+        <Service id="node-frontend" role="frontend-http-and-api-relay">
+            <Host>localhost</Host>
+            <Port>3000</Port>
+            <HttpPath>/api/navigate</HttpPath>
+            <WebSocketPath>/ws-relay</WebSocketPath>
+        </Service>
+
+        <Service id="java-security" role="duplicate-link-guard-and-security-filter">
+            <Host>localhost</Host>
+            <Port>8082</Port>
+            <HttpPath>/api/security/validate</HttpPath>
+        </Service>
+    </ServiceEndpoints>
+
+    <SecurityPolicy>
+        <AllowedProtocols>
+            <Protocol>http</Protocol>
+            <Protocol>https</Protocol>
+        </AllowedProtocols>
+
+        <BlockedHostSuffixes>
+            <Suffix>.local</Suffix>
+            <Suffix>.internal</Suffix>
+            <Suffix>localhost</Suffix>
+        </BlockedHostSuffixes>
+
+        <DuplicateRequestThresholdMs>2000</DuplicateRequestThresholdMs>
+
+        <ThreatPatterns>
+            <Pattern type="xss"><![CDATA[<script[^>]*>]]></Pattern>
+            <Pattern type="xss"><![CDATA[javascript:]]></Pattern>
+            <Pattern type="sqli"><![CDATA[\bUNION\b.{0,20}\bSELECT\b]]></Pattern>
+            <Pattern type="path-traversal"><![CDATA[\.\./]]></Pattern>
+        </ThreatPatterns>
+    </SecurityPolicy>
+
+    <PluginManifest engine="lua" directory="plugins/">
+        <HookPoint name="onLoad" />
+        <HookPoint name="onBeforeNavigate" />
+        <HookPoint name="onPageLoad" />
+        <HookPoint name="onSearch" />
+    </PluginManifest>
+
+    <SearchConfig>
+        <DefaultEngine>https://www.google.com/search</DefaultEngine>
+        <QueryParam>q</QueryParam>
+        <MaxQueryLength>256</MaxQueryLength>
+        <ResultTimeoutMs>10000</ResultTimeoutMs>
+    </SearchConfig>
+
+    <IPCPayloadSchema>
+        <Field name="sessionId" type="string" required="true" />
+        <Field name="finalUrl" type="string" required="true" />
+        <Field name="appliedPlugins" type="string[]" required="false" />
+        <Field name="timestamp" type="long" required="true" />
+    </IPCPayloadSchema>
+
+</BrowserLB>
